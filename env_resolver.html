@@ -70,7 +70,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line14">line 14</a>
+        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -92,7 +92,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -106,7 +108,9 @@
 
     
 
+    
     <h4 class="name" id=".alias"><span class="type-signature">(static) </span>alias<span class="signature">(match, value)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -243,7 +247,7 @@ based on .match().</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line177">line 177</a>
+        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line295">line 295</a>
     </li></ul></dd>
     
 
@@ -253,6 +257,10 @@ based on .match().</p>
 
     
 </dl>
+
+
+
+
 
 
 
@@ -283,7 +291,9 @@ based on .match().</p>
 
     
 
-    <h4 class="name" id=".findGeneratorsIn"><span class="type-signature">(static) </span>findGeneratorsIn<span class="signature">(List)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+    <h4 class="name" id=".findGeneratorsIn"><span class="type-signature">(static) </span>findGeneratorsIn<span class="signature">(List, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
 
     
 
@@ -316,6 +326,8 @@ top level <code>node_module</code> path. They can be installed globally or local
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -341,10 +353,120 @@ top level <code>node_module</code> path. They can be installed globally or local
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>of search paths</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>packagePatterns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'generator-*'
+                
+                </td>
+            
+
+            <td class="description last"><p>Pattern pattern.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -385,7 +507,7 @@ top level <code>node_module</code> path. They can be installed globally or local
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line63">line 63</a>
+        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line83">line 83</a>
     </li></ul></dd>
     
 
@@ -395,6 +517,8 @@ top level <code>node_module</code> path. They can be installed globally or local
 
     
 </dl>
+
+
 
 
 
@@ -433,12 +557,16 @@ top level <code>node_module</code> path. They can be installed globally or local
 
 
 
+
+
         
             
 
     
 
-    <h4 class="name" id=".getNpmPaths"><span class="type-signature">(static) </span>getNpmPaths<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+    <h4 class="name" id=".getNpmPaths"><span class="type-signature">(static) </span>getNpmPaths<span class="signature">(options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
 
     
 
@@ -454,6 +582,180 @@ top level <code>node_module</code> path. They can be installed globally or local
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+|
+
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>localOnly</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Set true to skip lookups of
+globally-installed generators.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filterPaths</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Remove paths that don't ends
+with a supported path (don't touch at NODE_PATH paths).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -489,7 +791,7 @@ top level <code>node_module</code> path. They can be installed globally or local
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line109">line 109</a>
+        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line158">line 158</a>
     </li></ul></dd>
     
 
@@ -499,6 +801,8 @@ top level <code>node_module</code> path. They can be installed globally or local
 
     
 </dl>
+
+
 
 
 
@@ -537,12 +841,16 @@ top level <code>node_module</code> path. They can be installed globally or local
 
 
 
+
+
         
             
 
     
 
-    <h4 class="name" id=".lookup"><span class="type-signature">(static) </span>lookup<span class="signature">(cb)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id=".lookup"><span class="type-signature">(static) </span>lookup<span class="signature">(options<span class="signature-attributes">opt</span>, cb)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -582,6 +890,8 @@ registered as <code>dummy:yo</code> generator.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -590,6 +900,276 @@ registered as <code>dummy:yo</code> generator.</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+|
+
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>localOnly</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Set true to skip lookups of
+globally-installed generators.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>packagePaths</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Paths to look for generators.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>npmPaths</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Repository paths to look for generators packages.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filePatterns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    '*\/index.js'
+                
+                </td>
+            
+
+            <td class="description last"><p>File pattern to look for.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>packagePatterns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'generator-*'
+                
+                </td>
+            
+
+            <td class="description last"><p>Package pattern to look for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
     
 
         <tr>
@@ -607,11 +1187,19 @@ registered as <code>dummy:yo</code> generator.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>Callback called once the lookup is done. Take err as first
-                       parameter.</p></td>
+parameter.</p></td>
         </tr>
 
     
@@ -652,7 +1240,7 @@ registered as <code>dummy:yo</code> generator.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line33">line 33</a>
+        <a href="resolver.js.html">resolver.js</a>, <a href="resolver.js.html#line41">line 41</a>
     </li></ul></dd>
     
 
@@ -662,6 +1250,10 @@ registered as <code>dummy:yo</code> generator.</p>
 
     
 </dl>
+
+
+
+
 
 
 
@@ -694,13 +1286,13 @@ registered as <code>dummy:yo</code> generator.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-env_log.html">env/log</a></li><li><a href="module-env_util.html">env/util</a></li></ul><h3>Classes</h3><ul><li><a href="Environment.html">Environment</a></li><li><a href="TerminalAdapter.html">TerminalAdapter</a></li></ul><h3>Mixins</h3><ul><li><a href="env_resolver.html">env/resolver</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-env_log.html">env/log</a></li><li><a href="module-env_util.html">env/util</a></li></ul><h3>Classes</h3><ul><li><a href="Environment.html">Environment</a></li><li><a href="TerminalAdapter.html">TerminalAdapter</a></li></ul><h3>Mixins</h3><ul><li><a href="env_resolver.html">env/resolver</a></li></ul><h3>Global</h3><ul><li><a href="global.html#callbackWrapper">callbackWrapper</a></li><li><a href="global.html#getGeneratorHint">getGeneratorHint</a></li><li><a href="global.html#splitArgsFromString">splitArgsFromString</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Feb 12 2016 22:20:15 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Feb 03 2020 19:40:57 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -27,7 +27,8 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-var _ = require('lodash');
+
+const debug = require('debug')('yeoman:environment:store');
 
 /**
  * The Generator store
@@ -36,85 +37,142 @@ var _ = require('lodash');
  * @constructor
  * @private
  */
-
-var Store = module.exports = function Store() {
-  this._generators = {};
-  this._meta = {};
-};
-
-/**
- * Store a module under the namespace key
- * @param {String}          namespace - The key under which the generator can be retrieved
- * @param {String|Function} generator - A generator module or a module path
- */
-
-Store.prototype.add = function add(namespace, generator) {
-  if (_.isString(generator)) {
-    this._storeAsPath(namespace, generator);
-    return;
+class Store {
+  constructor() {
+    this._generators = {};
+    this._meta = {};
+    // Store packages paths by ns
+    this._packagesPaths = {};
+    // Store packages ns
+    this._packagesNS = [];
   }
 
-  this._storeAsModule(namespace, generator);
-};
+  /**
+   * Store a module under the namespace key
+   * @param {String}          namespace  - The key under which the generator can be retrieved
+   * @param {String|Function} generator  - A generator module or a module path
+   * @param {String}         packagePath - PackagePath to the generator npm package (optional)
+   * @param {String}          [resolved] - The file path to the generator (used only if generator is a module)
+   */
+  add(namespace, generator, resolved, packagePath) {
+    if (typeof generator === 'string') {
+      this._storeAsPath(namespace, generator, packagePath);
+      return;
+    }
 
-Store.prototype._storeAsPath = function _storeAsPath(namespace, path) {
-  this._meta[namespace] = {
-    resolved: path,
-    namespace: namespace
-  };
-
-  Object.defineProperty(this._generators, namespace, {
-    get: function () {
-      var Generator = require(path);
-      return Generator;
-    },
-    enumerable: true,
-    configurable: true
-  });
-};
-
-Store.prototype._storeAsModule = function _storeAsModule(namespace, Generator) {
-  this._meta[namespace] = {
-    resolved: 'unknown',
-    namespace: namespace
-  };
-
-  this._generators[namespace] = Generator;
-};
-
-/**
- * Get the module registered under the given namespace
- * @param  {String} namespace
- * @return {Module}
- */
-
-Store.prototype.get = function get(namespace) {
-  var Generator = this._generators[namespace];
-
-  if (!Generator) {
-    return;
+    this._storeAsModule(namespace, generator, resolved, packagePath);
   }
 
-  return _.extend(Generator, this._meta[namespace]);
-};
+  _storeAsPath(namespace, path, packagePath) {
+    this._meta[namespace] = {
+      resolved: path,
+      namespace,
+      packagePath
+    };
 
-/**
- * Returns the list of registered namespace.
- * @return {Array} Namespaces array
- */
+    Object.defineProperty(this._generators, namespace, {
+      get() {
+        const Generator = require(path);
+        return Generator;
+      },
+      enumerable: true,
+      configurable: true
+    });
+  }
 
-Store.prototype.namespaces = function namespaces() {
-  return Object.keys(this._generators);
-};
+  _storeAsModule(namespace, Generator, resolved = 'unknown', packagePath) {
+    this._meta[namespace] = {
+      resolved,
+      namespace,
+      packagePath
+    };
 
-/**
- * Get the stored generators meta data
- * @return {Object} Generators metadata
- */
+    this._generators[namespace] = Generator;
+  }
 
-Store.prototype.getGeneratorsMeta = function getGeneratorsMeta() {
-  return this._meta;
-};
+  /**
+   * Get the module registered under the given namespace
+   * @param  {String} namespace
+   * @return {Module}
+   */
+  get(namespace) {
+    const Generator = this._generators[namespace];
+
+    if (!Generator) {
+      return;
+    }
+
+    return Object.assign(Generator, this._meta[namespace]);
+  }
+
+  /**
+   * Returns the list of registered namespace.
+   * @return {Array} Namespaces array
+   */
+  namespaces() {
+    return Object.keys(this._generators);
+  }
+
+  /**
+   * Get the stored generators meta data
+   * @return {Object} Generators metadata
+   */
+  getGeneratorsMeta() {
+    return this._meta;
+  }
+
+  /**
+   * Store a package under the namespace key
+   * @param {String}     packageNS - The key under which the generator can be retrieved
+   * @param {String}   packagePath - The package path
+   */
+  addPackage(packageNS, packagePath) {
+    if (this._packagesPaths[packageNS]) {
+      // Yo environment allows overriding, so the last added has preference.
+      if (this._packagesPaths[packageNS][0] !== packagePath) {
+        const packagePaths = this._packagesPaths[packageNS];
+        debug('Overriding a package with namespace %s and path %s, with path %s',
+          packageNS, this._packagesPaths[packageNS][0], packagePath);
+        // Remove old packagePath
+        const index = packagePaths.indexOf(packagePath);
+        if (index > -1) {
+          packagePaths.splice(index, 1);
+        }
+        packagePaths.splice(0, 0, packagePath);
+      }
+    } else {
+      this._packagesPaths[packageNS] = [packagePath];
+    }
+  }
+
+  /**
+   * Get the stored packages namespaces with paths.
+   * @return {Object} Stored packages namespaces with paths.
+   */
+  getPackagesPaths() {
+    return this._packagesPaths;
+  }
+
+  /**
+   * Store a package ns
+   * @param {String} packageNS - The key under which the generator can be retrieved
+   */
+  addPackageNS(packageNS) {
+    if (!this._packagesNS.includes(packageNS)) {
+      this._packagesNS.push(packageNS);
+    }
+  }
+
+  /**
+   * Get the stored packages namespaces.
+   * @return {Array} Stored packages namespaces.
+   */
+  getPackagesNS() {
+    return this._packagesNS;
+  }
+}
+
+module.exports = Store;
 </code></pre>
         </article>
     </section>
@@ -125,13 +183,13 @@ Store.prototype.getGeneratorsMeta = function getGeneratorsMeta() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-env_log.html">env/log</a></li><li><a href="module-env_util.html">env/util</a></li></ul><h3>Classes</h3><ul><li><a href="Environment.html">Environment</a></li><li><a href="TerminalAdapter.html">TerminalAdapter</a></li></ul><h3>Mixins</h3><ul><li><a href="env_resolver.html">env/resolver</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-env_log.html">env/log</a></li><li><a href="module-env_util.html">env/util</a></li></ul><h3>Classes</h3><ul><li><a href="Environment.html">Environment</a></li><li><a href="TerminalAdapter.html">TerminalAdapter</a></li></ul><h3>Mixins</h3><ul><li><a href="env_resolver.html">env/resolver</a></li></ul><h3>Global</h3><ul><li><a href="global.html#callbackWrapper">callbackWrapper</a></li><li><a href="global.html#getGeneratorHint">getGeneratorHint</a></li><li><a href="global.html#splitArgsFromString">splitArgsFromString</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Feb 12 2016 22:20:15 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Feb 03 2020 19:40:57 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

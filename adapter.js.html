@@ -27,11 +27,11 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-
-var inquirer = require('inquirer');
-var diff = require('diff');
-var chalk = require('chalk');
-var logger = require('./util/log');
+const _ = require('lodash');
+const inquirer = require('inquirer');
+const diff = require('diff');
+const chalk = require('chalk');
+const logger = require('./util/log');
 
 /**
  * `TerminalAdapter` is the default implementation of `Adapter`, an abstraction
@@ -41,69 +41,86 @@ var logger = require('./util/log');
  *
  * @constructor
  */
-var TerminalAdapter = module.exports = function TerminalAdapter() {
-  this.prompt = inquirer.createPromptModule();
-};
+class TerminalAdapter {
+  constructor() {
+    this.promptModule = inquirer.createPromptModule();
+  }
 
-TerminalAdapter.prototype._colorDiffAdded = chalk.black.bgGreen;
-TerminalAdapter.prototype._colorDiffRemoved = chalk.bgRed;
-TerminalAdapter.prototype._colorLines = function colorLines(name, str) {
-  return str.split('\n').map(function (str) {
-    return this['_colorDiff' + name](str);
-  }, this).join('\n');
-};
+  get _colorDiffAdded() {
+    return chalk.black.bgGreen;
+  }
 
-/**
- * Prompt a user for one or more questions and pass
- * the answer(s) to the provided callback.
- *
- * It shares its interface with `Base.prompt`
- *
- * (Defined inside the constructor to keep interfaces separated between
- * instances)
- *
- * @param {Array} questions
- * @param {Function} callback
- */
-TerminalAdapter.prototype.prompt = function () {};
+  get _colorDiffRemoved() {
+    return chalk.bgRed;
+  }
 
-/**
- * Shows a color-based diff of two strings
- *
- * @param {string} actual
- * @param {string} expected
- */
-TerminalAdapter.prototype.diff = function _diff(actual, expected) {
-  var msg = diff.diffLines(actual, expected).map(function (str) {
-    if (str.added) {
-      return this._colorLines('Added', str.value);
+  _colorLines(name, str) {
+    return str.split('\n').map(line => this[`_colorDiff${name}`](line)).join('\n');
+  }
+
+  /**
+   * Prompt a user for one or more questions and pass
+   * the answer(s) to the provided callback.
+   *
+   * It shares its interface with `Base.prompt`
+   *
+   * (Defined inside the constructor to keep interfaces separated between
+   * instances)
+   *
+   * @param {Array} questions
+   * @param {Function} callback
+   */
+  prompt(questions, cb) {
+    const promise = this.promptModule(questions);
+    promise.then(cb || _.noop);
+    return promise;
+  }
+
+  /**
+   * Shows a color-based diff of two strings
+   *
+   * @param {string} actual
+   * @param {string} expected
+   * @param {Array} changes returned by diff.
+   */
+  diff(actual, expected, changes) {
+    if (Array.isArray(actual)) {
+      changes = actual;
     }
+    changes = changes || diff.diffLines(actual, expected);
+    let msg = changes.map(str => {
+      if (str.added) {
+        return this._colorLines('Added', str.value);
+      }
 
-    if (str.removed) {
-      return this._colorLines('Removed', str.value);
-    }
+      if (str.removed) {
+        return this._colorLines('Removed', str.value);
+      }
 
-    return str.value;
-  }, this).join('');
+      return str.value;
+    }).join('');
 
-  // legend
-  msg = '\n' +
-    this._colorDiffRemoved('removed') +
-    ' ' +
-    this._colorDiffAdded('added') +
-    '\n\n' +
-    msg +
-    '\n';
+    // Legend
+    msg = '\n' +
+      this._colorDiffRemoved('removed') +
+      ' ' +
+      this._colorDiffAdded('added') +
+      '\n\n' +
+      msg +
+      '\n';
 
-  console.log(msg);
-  return msg;
-};
+    console.log(msg);
+    return msg;
+  }
+}
 
 /**
  * Logging utility
  * @type {env/log}
  */
 TerminalAdapter.prototype.log = logger();
+
+module.exports = TerminalAdapter;
 </code></pre>
         </article>
     </section>
@@ -114,13 +131,13 @@ TerminalAdapter.prototype.log = logger();
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-env_log.html">env/log</a></li><li><a href="module-env_util.html">env/util</a></li></ul><h3>Classes</h3><ul><li><a href="Environment.html">Environment</a></li><li><a href="TerminalAdapter.html">TerminalAdapter</a></li></ul><h3>Mixins</h3><ul><li><a href="env_resolver.html">env/resolver</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-env_log.html">env/log</a></li><li><a href="module-env_util.html">env/util</a></li></ul><h3>Classes</h3><ul><li><a href="Environment.html">Environment</a></li><li><a href="TerminalAdapter.html">TerminalAdapter</a></li></ul><h3>Mixins</h3><ul><li><a href="env_resolver.html">env/resolver</a></li></ul><h3>Global</h3><ul><li><a href="global.html#callbackWrapper">callbackWrapper</a></li><li><a href="global.html#getGeneratorHint">getGeneratorHint</a></li><li><a href="global.html#splitArgsFromString">splitArgsFromString</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Feb 12 2016 22:20:15 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Feb 03 2020 19:40:57 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

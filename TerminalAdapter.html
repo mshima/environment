@@ -28,7 +28,11 @@
 
 <header>
     
-        <h2>TerminalAdapter</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>TerminalAdapter<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p><code>TerminalAdapter</code> is the default implementation of <code>Adapter</code>, an abstraction
+layer that defines the I/O interactions.</p>
+<p>It provides a CLI interaction</p></div>
         
     
 </header>
@@ -39,18 +43,16 @@
         
 
     
+    <h2>Constructor</h2>
+    
 
+    
     <h4 class="name" id="TerminalAdapter"><span class="type-signature"></span>new TerminalAdapter<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
 
-
-<div class="description">
-    <p><code>TerminalAdapter</code> is the default implementation of <code>Adapter</code>, an abstraction
-layer that defines the I/O interactions.</p>
-<p>It provides a CLI interaction</p>
-</div>
 
 
 
@@ -93,7 +95,7 @@ layer that defines the I/O interactions.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adapter.js.html">adapter.js</a>, <a href="adapter.js.html#line16">line 16</a>
+        <a href="adapter.js.html">adapter.js</a>, <a href="adapter.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -119,6 +121,10 @@ layer that defines the I/O interactions.</p>
 
 
 
+
+
+
+
     
     </div>
 
@@ -128,7 +134,9 @@ layer that defines the I/O interactions.</p>
 
     
 
-     
+    
+
+    
 
     
 
@@ -191,7 +199,7 @@ layer that defines the I/O interactions.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adapter.js.html">adapter.js</a>, <a href="adapter.js.html#line78">line 78</a>
+        <a href="adapter.js.html">adapter.js</a>, <a href="adapter.js.html#line93">line 93</a>
     </li></ul></dd>
     
 
@@ -218,7 +226,9 @@ layer that defines the I/O interactions.</p>
 
     
 
-    <h4 class="name" id="diff"><span class="type-signature"></span>diff<span class="signature">(actual, expected)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="diff"><span class="type-signature"></span>diff<span class="signature">(actual, expected, changes)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -304,6 +314,29 @@ layer that defines the I/O interactions.</p>
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>changes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>returned by diff.</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -341,7 +374,7 @@ layer that defines the I/O interactions.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adapter.js.html">adapter.js</a>, <a href="adapter.js.html#line48">line 48</a>
+        <a href="adapter.js.html">adapter.js</a>, <a href="adapter.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -367,12 +400,18 @@ layer that defines the I/O interactions.</p>
 
 
 
+
+
+
+
         
             
 
     
 
+    
     <h4 class="name" id="prompt"><span class="type-signature"></span>prompt<span class="signature">(questions, callback)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -499,7 +538,7 @@ instances)</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adapter.js.html">adapter.js</a>, <a href="adapter.js.html#line40">line 40</a>
+        <a href="adapter.js.html">adapter.js</a>, <a href="adapter.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -509,6 +548,10 @@ instances)</p>
 
     
 </dl>
+
+
+
+
 
 
 
@@ -541,13 +584,13 @@ instances)</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-env_log.html">env/log</a></li><li><a href="module-env_util.html">env/util</a></li></ul><h3>Classes</h3><ul><li><a href="Environment.html">Environment</a></li><li><a href="TerminalAdapter.html">TerminalAdapter</a></li></ul><h3>Mixins</h3><ul><li><a href="env_resolver.html">env/resolver</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-env_log.html">env/log</a></li><li><a href="module-env_util.html">env/util</a></li></ul><h3>Classes</h3><ul><li><a href="Environment.html">Environment</a></li><li><a href="TerminalAdapter.html">TerminalAdapter</a></li></ul><h3>Mixins</h3><ul><li><a href="env_resolver.html">env/resolver</a></li></ul><h3>Global</h3><ul><li><a href="global.html#callbackWrapper">callbackWrapper</a></li><li><a href="global.html#getGeneratorHint">getGeneratorHint</a></li><li><a href="global.html#splitArgsFromString">splitArgsFromString</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Feb 12 2016 22:20:15 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Feb 03 2020 19:40:57 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
