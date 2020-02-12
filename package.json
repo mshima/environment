@@ -1,5 +1,5 @@
 {
-  "name": "yeoman-environment",
+  "name": "@mshima/yeoman-environment",
   "version": "2.5.8",
   "description": "Handles the lifecyle and bootstrapping of generators in a specific environment",
   "homepage": "http://yeoman.io",
