@@ -1,4 +1,4 @@
-name: Node.js Package
+name: Create Node.js Package
 
 on:
   release:
@@ -14,6 +14,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           registry-url: 'https://npm.pkg.github.com'
+          scope: '@mshima'
 
       - name: Generate package
         id: generate_package
