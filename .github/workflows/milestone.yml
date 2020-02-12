@@ -17,7 +17,7 @@ jobs:
           npm version ${{github.event.milestone.title}}
           # git push github HEAD:${GITHUB_REF}
           git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
-          git push origin ${{github.event.milestone.title}}
+          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY" ${{github.event.milestone.title}}
 
       - name: Create Release
         id: create_release
