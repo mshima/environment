@@ -16,5 +16,4 @@ jobs:
           git config --global user.name "Marcelo Shima"
           npm version ${{github.event.milestone.title}}
           git push github HEAD:${GITHUB_REF}
-          git tag ${{github.event.milestone.title}}
           git push github ${{github.event.milestone.title}}
