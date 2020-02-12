@@ -1,0 +1,24 @@
+name: Node.js Package
+
+on:
+  registry_package:
+    types: [published, updated]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.registry_package.package.name == 'yeoman-environment'
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: '@your-github-username'
+      - run: npm pack ${{github.event.registry_package.package.name}}@${{github.event.registry_package.package.version}}
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{github.event.registry_package.package.name}}-${{github.event.registry_package.package.version}}.tgz
+          path: ./
