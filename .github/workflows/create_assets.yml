@@ -9,12 +9,11 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-
-      - uses: actions/checkout@v2
+          registry-url: 'https://npm.pkg.github.com'
 
       - name: Generate package
         id: generate_package
@@ -34,4 +33,4 @@ jobs:
       - name: Publish to github
         run: npm publish ${{ steps.generate_package.outputs.FILE }}
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
