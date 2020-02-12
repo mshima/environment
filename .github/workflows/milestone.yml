@@ -8,14 +8,14 @@ jobs:
   milestone_reached:
     runs-on: ubuntu-latest
     steps:
-
-      - uses: actions/checkout@v2
       - run: |
           npm version ${{github.event.milestone.title}}
+          git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+          git pull github ${GITHUB_REF} --ff-only
           git add package*.json
-          git config --local user.email "mshima@users.noreply.github.com"
-          git config --local user.name "Marcelo Shima"
+          git config user.email "mshima@users.noreply.github.com"
+          git config user.name "Marcelo Shima"
           git commit -m "${{github.event.milestone.title}}"
-          git push
+          git push github HEAD:${GITHUB_REF}
           git tag ${{github.event.milestone.title}}
-          git push origin ${{github.event.milestone.title}}
+          git push github ${{github.event.milestone.title}}
