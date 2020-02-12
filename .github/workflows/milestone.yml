@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: |
+          npm install -g semver
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          semver -r =${{github.event.milestone.title}} $(semver -i minor $CURRENT_VERSION) $(semver -i patch $CURRENT_VERSION) $(semver -i major $CURRENT_VERSION)
       - run: |
           git config --global user.email ""
           git config --global user.name "GitHub Actions"
