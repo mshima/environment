@@ -15,7 +15,7 @@ jobs:
           git add package*.json
           git config --local user.email "mshima@users.noreply.github.com"
           git config --local user.name "Marcelo Shima"
-          git commit -m "${{github.event.milestone.milestone.title}}"
+          git commit -m "${{github.event.milestone.title}}"
           git push
           git tag ${{github.event.milestone.milestone.title}}
           git push origin ${{github.event.milestone.milestone.title}}
