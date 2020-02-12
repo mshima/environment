@@ -5,7 +5,8 @@ on:
     types: [closed]
 
 jobs:
-  milestone_reached:
+  build:
+    name: Release Milestone
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
