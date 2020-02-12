@@ -15,8 +15,7 @@ jobs:
           npm version ${{github.event.milestone.title}}
           git config --global user.email "mshima@users.noreply.github.com"
           git config --global user.name "Marcelo Shima"
-          git add package*.json
-          git commit -m "${{github.event.milestone.title}}"
+          git commit -a -m "${{github.event.milestone.title}}"
           git push github HEAD:${GITHUB_REF}
           git tag ${{github.event.milestone.title}}
           git push github ${{github.event.milestone.title}}
