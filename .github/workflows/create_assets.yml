@@ -13,10 +13,7 @@ jobs:
         with:
           node-version: 12
 
-      - name: Test
-        run: |
-          npm ci
-          npm test
+      - uses: actions/checkout@v2
 
       - name: Generate package
         id: generate_package
