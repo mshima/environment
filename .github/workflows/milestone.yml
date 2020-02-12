@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          npm version ${{github.event.milestone.title}}
           git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
           git pull github ${GITHUB_REF} --ff-only
+          npm version ${{github.event.milestone.title}}
           git add package*.json
           git config user.email "mshima@users.noreply.github.com"
           git config user.name "Marcelo Shima"
