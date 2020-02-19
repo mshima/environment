@@ -97,14 +97,8 @@
                   >
                 </li>
                 <li><a href="Environment.html#alias">alias</a></li>
-                <li><a href="Environment.html#alias">alias</a></li>
                 <li><a href="Environment.html#create">create</a></li>
                 <li><a href="Environment.html#error">error</a></li>
-                <li>
-                  <a href="Environment.html#findGeneratorsIn"
-                    >findGeneratorsIn</a
-                  >
-                </li>
                 <li>
                   <a href="Environment.html#findGeneratorsIn"
                     >findGeneratorsIn</a
@@ -122,7 +116,6 @@
                     >getGeneratorsMeta</a
                   >
                 </li>
-                <li><a href="Environment.html#getNpmPaths">getNpmPaths</a></li>
                 <li><a href="Environment.html#getNpmPaths">getNpmPaths</a></li>
                 <li>
                   <a href="Environment.html#getPackagePath">getPackagePath</a>
@@ -142,7 +135,6 @@
                     >isPackageRegistered</a
                   >
                 </li>
-                <li><a href="Environment.html#lookup">lookup</a></li>
                 <li><a href="Environment.html#lookup">lookup</a></li>
                 <li><a href="Environment.html#namespace">namespace</a></li>
                 <li><a href="Environment.html#namespaces">namespaces</a></li>
@@ -411,7 +403,7 @@
                   <code><a href="environment.js.html">environment.js</a></code
                   >,
                   <code
-                    ><a href="environment.js.html#line135">line 135</a></code
+                    ><a href="environment.js.html#line113">line 113</a></code
                   >
                 </div>
               </h4>
@@ -460,9 +452,7 @@
                 <div class="container-source members">
                   <code><a href="environment.js.html">environment.js</a></code
                   >,
-                  <code
-                    ><a href="environment.js.html#line111">line 111</a></code
-                  >
+                  <code><a href="environment.js.html#line89">line 89</a></code>
                 </div>
               </h4>
             </dt>
@@ -532,7 +522,7 @@
                   <code><a href="environment.js.html">environment.js</a></code
                   >,
                   <code
-                    ><a href="environment.js.html#line161">line 161</a></code
+                    ><a href="environment.js.html#line139">line 139</a></code
                   >
                 </div>
               </h4>
@@ -689,7 +679,7 @@
                   <code><a href="environment.js.html">environment.js</a></code
                   >,
                   <code
-                    ><a href="environment.js.html#line145">line 145</a></code
+                    ><a href="environment.js.html#line123">line 123</a></code
                   >
                 </div>
               </h4>
@@ -734,110 +724,6 @@
               </div>
 
               <dl class="details"></dl>
-            </dd>
-
-            <dt>
-              <h4 class="name" id="alias">
-                <span class="type-signature"></span>alias<span class="signature"
-                  >(match, value)</span
-                ><span class="type-signature"></span>
-
-                <div class="container-source members">
-                  <code><a href="resolver.js.html">resolver.js</a></code
-                  >,
-                  <code><a href="resolver.js.html#line304">line 304</a></code>
-                </div>
-              </h4>
-            </dt>
-            <dd>
-              <div class="description">
-                <p>Get or create an alias.</p>
-                <p>
-                  Alias allows the <code>get()</code> and
-                  <code>lookup()</code> methods to search in alternate filepath
-                  for a given namespaces. It's used for example to map
-                  <code>generator-*</code> npm package to their namespace
-                  equivalent (without the generator- prefix), or to default a
-                  single namespace like <code>angular</code> to
-                  <code>angular:app</code> or <code>angular:all</code>.
-                </p>
-                <p>
-                  Given a single argument, this method acts as a getter. When
-                  both name and value are provided, acts as a setter and
-                  registers that new alias.
-                </p>
-                <p>
-                  If multiple alias are defined, then the replacement is
-                  recursive, replacing each alias in reverse order.
-                </p>
-                <p>
-                  An alias can be a single String or a Regular Expression. The
-                  finding is done based on .match().
-                </p>
-              </div>
-
-              <div class="container-params">
-                <h5>Parameters:</h5>
-
-                <table class="params">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-
-                      <th>Type</th>
-
-                      <th class="last">Description</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td class="name"><code>match</code></td>
-
-                      <td class="type">
-                        <span class="param-type">String</span>
-                        |
-
-                        <span class="param-type">RegExp</span>
-                      </td>
-
-                      <td class="description last"></td>
-                    </tr>
-
-                    <tr>
-                      <td class="name"><code>value</code></td>
-
-                      <td class="type">
-                        <span class="param-type">String</span>
-                      </td>
-
-                      <td class="description last"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <dl class="details">
-                <dt class="mixes">Mixes In:</dt>
-
-                <dd class="mixes">
-                  <ul>
-                    <li>
-                      <a href="env_resolver.html#.alias">env/resolver.alias</a>
-                    </li>
-                  </ul>
-                </dd>
-              </dl>
-
-              <h5>Example</h5>
-
-              <pre
-                class="prettyprint"
-              ><code>env.alias(/^([a-zA-Z0-9:\*]+)$/, 'generator-$1');
-    env.alias(/^([^:]+)$/, '$1:app');
-    env.alias(/^([^:]+)$/, '$1:all');
-    env.alias('foo');
-    // => generator-foo:all</code></pre>
             </dd>
 
             <dt>
@@ -1209,137 +1095,6 @@
             </dd>
 
             <dt>
-              <h4 class="name" id="findGeneratorsIn">
-                <span class="type-signature"></span>findGeneratorsIn<span
-                  class="signature"
-                  >(List, options<span class="signature-attributes">opt</span
-                  >)</span
-                ><span class="type-signature"> &rarr; {Array}</span>
-
-                <div class="container-source members">
-                  <code><a href="resolver.js.html">resolver.js</a></code
-                  >,
-                  <code><a href="resolver.js.html#line88">line 88</a></code>
-                </div>
-              </h4>
-            </dt>
-            <dd>
-              <div class="description">
-                <p>
-                  Search npm for every available generators. Generators are npm
-                  packages who's name start with <code>generator-</code> and
-                  who're placed in the top level <code>node_module</code> path.
-                  They can be installed globally or locally.
-                </p>
-              </div>
-
-              <div class="container-params">
-                <h5>Parameters:</h5>
-
-                <table class="params">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-
-                      <th>Type</th>
-
-                      <th>Attributes</th>
-
-                      <th class="last">Description</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td class="name"><code>List</code></td>
-
-                      <td class="type">
-                        <span class="param-type">Array</span>
-                      </td>
-
-                      <td class="attributes"></td>
-
-                      <td class="description last"><p>of search paths</p></td>
-                    </tr>
-
-                    <tr>
-                      <td class="name"><code>options</code></td>
-
-                      <td class="type">
-                        <span class="param-type">Object</span>
-                      </td>
-
-                      <td class="attributes">&lt;optional><br /></td>
-
-                      <td class="description last">
-                        <h6>Properties</h6>
-
-                        <table class="params">
-                          <thead>
-                            <tr>
-                              <th>Name</th>
-
-                              <th>Type</th>
-
-                              <th>Attributes</th>
-
-                              <th>Default</th>
-
-                              <th class="last">Description</th>
-                            </tr>
-                          </thead>
-
-                          <tbody>
-                            <tr>
-                              <td class="name"><code>packagePatterns</code></td>
-
-                              <td class="type">
-                                <span class="param-type">boolean</span>
-                              </td>
-
-                              <td class="attributes">&lt;optional><br /></td>
-
-                              <td class="default">
-                                'generator-*'
-                              </td>
-
-                              <td class="description last">
-                                <p>Pattern pattern.</p>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="container-returns">
-                <h5>Returns:</h5>
-
-                <span class="param-type">Array</span>
-
-                -
-                <p>List of the generator modules path</p>
-              </div>
-
-              <dl class="details">
-                <dt class="mixes">Mixes In:</dt>
-
-                <dd class="mixes">
-                  <ul>
-                    <li>
-                      <a href="env_resolver.html#.findGeneratorsIn"
-                        >env/resolver.findGeneratorsIn</a
-                      >
-                    </li>
-                  </ul>
-                </dd>
-              </dl>
-            </dd>
-
-            <dt>
               <h4 class="name" id="get">
                 <span class="type-signature"></span>get<span class="signature"
                   >(namespaceOrPath)</span
@@ -1536,148 +1291,6 @@
               </div>
 
               <dl class="details"></dl>
-            </dd>
-
-            <dt>
-              <h4 class="name" id="getNpmPaths">
-                <span class="type-signature"></span>getNpmPaths<span
-                  class="signature"
-                  >(options<span class="signature-attributes">opt</span>)</span
-                ><span class="type-signature"> &rarr; {Array}</span>
-
-                <div class="container-source members">
-                  <code><a href="resolver.js.html">resolver.js</a></code
-                  >,
-                  <code><a href="resolver.js.html#line167">line 167</a></code>
-                </div>
-              </h4>
-            </dt>
-            <dd>
-              <div class="description">
-                <p>
-                  Get the npm lookup directories (<code>node_modules/</code>)
-                </p>
-              </div>
-
-              <div class="container-params">
-                <h5>Parameters:</h5>
-
-                <table class="params">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-
-                      <th>Type</th>
-
-                      <th>Attributes</th>
-
-                      <th class="last">Description</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td class="name"><code>options</code></td>
-
-                      <td class="type">
-                        <span class="param-type">boolean</span>
-                        |
-
-                        <span class="param-type">Object</span>
-                      </td>
-
-                      <td class="attributes">&lt;optional><br /></td>
-
-                      <td class="description last">
-                        <h6>Properties</h6>
-
-                        <table class="params">
-                          <thead>
-                            <tr>
-                              <th>Name</th>
-
-                              <th>Type</th>
-
-                              <th>Attributes</th>
-
-                              <th>Default</th>
-
-                              <th class="last">Description</th>
-                            </tr>
-                          </thead>
-
-                          <tbody>
-                            <tr>
-                              <td class="name"><code>localOnly</code></td>
-
-                              <td class="type">
-                                <span class="param-type">boolean</span>
-                              </td>
-
-                              <td class="attributes">&lt;optional><br /></td>
-
-                              <td class="default">
-                                false
-                              </td>
-
-                              <td class="description last">
-                                <p>
-                                  Set true to skip lookups of globally-installed
-                                  generators.
-                                </p>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td class="name"><code>filterPaths</code></td>
-
-                              <td class="type">
-                                <span class="param-type">boolean</span>
-                              </td>
-
-                              <td class="attributes">&lt;optional><br /></td>
-
-                              <td class="default">
-                                false
-                              </td>
-
-                              <td class="description last">
-                                <p>
-                                  Remove paths that don't ends with a supported
-                                  path (don't touch at NODE_PATH paths).
-                                </p>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="container-returns">
-                <h5>Returns:</h5>
-
-                <span class="param-type">Array</span>
-
-                -
-                <p>lookup paths</p>
-              </div>
-
-              <dl class="details">
-                <dt class="mixes">Mixes In:</dt>
-
-                <dd class="mixes">
-                  <ul>
-                    <li>
-                      <a href="env_resolver.html#.getNpmPaths"
-                        >env/resolver.getNpmPaths</a
-                      >
-                    </li>
-                  </ul>
-                </dd>
-              </dl>
             </dd>
 
             <dt>
@@ -2215,243 +1828,6 @@
               </div>
 
               <dl class="details"></dl>
-            </dd>
-
-            <dt>
-              <h4 class="name" id="lookup">
-                <span class="type-signature"></span>lookup<span
-                  class="signature"
-                  >(options<span class="signature-attributes">opt</span>,
-                  cb)</span
-                ><span class="type-signature"> &rarr; {Array}</span>
-
-                <div class="container-source members">
-                  <code><a href="resolver.js.html">resolver.js</a></code
-                  >,
-                  <code><a href="resolver.js.html#line42">line 42</a></code>
-                </div>
-              </h4>
-            </dt>
-            <dd>
-              <div class="description">
-                <p>Search for generators and their sub generators.</p>
-                <p>
-                  A generator is a <code>:lookup/:name/index.js</code> file
-                  placed inside an npm package.
-                </p>
-                <p>Defaults lookups are:</p>
-                <ul>
-                  <li>./</li>
-                  <li>generators/</li>
-                  <li>lib/generators/</li>
-                </ul>
-                <p>
-                  So this index file
-                  <code
-                    >node_modules/generator-dummy/lib/generators/yo/index.js</code
-                  >
-                  would be registered as <code>dummy:yo</code> generator.
-                </p>
-              </div>
-
-              <div class="container-params">
-                <h5>Parameters:</h5>
-
-                <table class="params">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-
-                      <th>Type</th>
-
-                      <th>Attributes</th>
-
-                      <th class="last">Description</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td class="name"><code>options</code></td>
-
-                      <td class="type">
-                        <span class="param-type">boolean</span>
-                        |
-
-                        <span class="param-type">Object</span>
-                      </td>
-
-                      <td class="attributes">&lt;optional><br /></td>
-
-                      <td class="description last">
-                        <h6>Properties</h6>
-
-                        <table class="params">
-                          <thead>
-                            <tr>
-                              <th>Name</th>
-
-                              <th>Type</th>
-
-                              <th>Attributes</th>
-
-                              <th>Default</th>
-
-                              <th class="last">Description</th>
-                            </tr>
-                          </thead>
-
-                          <tbody>
-                            <tr>
-                              <td class="name"><code>localOnly</code></td>
-
-                              <td class="type">
-                                <span class="param-type">boolean</span>
-                              </td>
-
-                              <td class="attributes">&lt;optional><br /></td>
-
-                              <td class="default">
-                                false
-                              </td>
-
-                              <td class="description last">
-                                <p>
-                                  Set true to skip lookups of globally-installed
-                                  generators.
-                                </p>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td class="name"><code>packagePaths</code></td>
-
-                              <td class="type">
-                                <span class="param-type">string</span>
-                                |
-
-                                <span class="param-type">Array</span>
-                              </td>
-
-                              <td class="attributes">&lt;optional><br /></td>
-
-                              <td class="default"></td>
-
-                              <td class="description last">
-                                <p>Paths to look for generators.</p>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td class="name"><code>npmPaths</code></td>
-
-                              <td class="type">
-                                <span class="param-type">string</span>
-                                |
-
-                                <span class="param-type">Array</span>
-                              </td>
-
-                              <td class="attributes">&lt;optional><br /></td>
-
-                              <td class="default"></td>
-
-                              <td class="description last">
-                                <p>
-                                  Repository paths to look for generators
-                                  packages.
-                                </p>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td class="name"><code>filePatterns</code></td>
-
-                              <td class="type">
-                                <span class="param-type">string</span>
-                                |
-
-                                <span class="param-type">Array</span>
-                              </td>
-
-                              <td class="attributes">&lt;optional><br /></td>
-
-                              <td class="default">
-                                '*\/index.js'
-                              </td>
-
-                              <td class="description last">
-                                <p>File pattern to look for.</p>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td class="name"><code>packagePatterns</code></td>
-
-                              <td class="type">
-                                <span class="param-type">string</span>
-                                |
-
-                                <span class="param-type">Array</span>
-                              </td>
-
-                              <td class="attributes">&lt;optional><br /></td>
-
-                              <td class="default">
-                                'generator-*'
-                              </td>
-
-                              <td class="description last">
-                                <p>Package pattern to look for.</p>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="name"><code>cb</code></td>
-
-                      <td class="type">
-                        <span class="param-type">function</span>
-                      </td>
-
-                      <td class="attributes"></td>
-
-                      <td class="description last">
-                        <p>
-                          Callback called once the lookup is done. Take err as
-                          first parameter.
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="container-returns">
-                <h5>Returns:</h5>
-
-                <span class="param-type">Array</span>
-
-                -
-                <p>List of generators</p>
-              </div>
-
-              <dl class="details">
-                <dt class="mixes">Mixes In:</dt>
-
-                <dd class="mixes">
-                  <ul>
-                    <li>
-                      <a href="env_resolver.html#.lookup"
-                        >env/resolver.lookup</a
-                      >
-                    </li>
-                  </ul>
-                </dd>
-              </dl>
             </dd>
 
             <dt>
