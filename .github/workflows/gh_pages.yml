@@ -1,7 +1,5 @@
 name: Update api docs
-on:
-  release:
-    types: [published]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -32,10 +30,10 @@ jobs:
         uses: peter-evans/create-pull-request@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'Update api for ${{github.event.release.name}}'
+          commit-message: 'Update api for'
           committer: ""
           author: Github Actions <mshima@users.noreply.github.com>
-          title: 'Update api for ${{github.event.release.name}}'
+          title: 'Update api for'
           body: |
             Update api docs
           labels: automated pr
