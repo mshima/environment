@@ -1,7 +1,7 @@
 name: Update api docs
 
-push:
-  on:
+on:
+  push:
     branches:
       - docs
 
