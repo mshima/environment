@@ -1,8 +1,9 @@
 name: Update api docs
 
 push:
-  branches:
-    - docs
+  on:
+    branches:
+      - docs
 
 jobs:
   build:
