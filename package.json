@@ -80,7 +80,7 @@
     "sinon": "^9.0.2",
     "sinon-test": "^3.0.0",
     "tui-jsdoc-template": "^1.2.2",
-    "xo": "^0.32.1",
+    "xo": "^0.35.0",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^3.0.0"
   },
