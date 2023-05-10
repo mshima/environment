@@ -380,11 +380,7 @@ describe('Conflicter', () => {
         }
       ).then(
         () => {
-          sinon.assert.neverCalledWithMatch(
-            testAdapter.log.writeln,
-            /Existing.*Replacement.*Diff/
-          );
-          sinon.assert.called(testAdapter.diff);
+          sinon.assert.called(testAdapter.log.colored);
         }
       );
     });
@@ -400,11 +396,7 @@ describe('Conflicter', () => {
         }
       ).then(
         () => {
-          sinon.assert.neverCalledWithMatch(
-            testAdapter.log.writeln,
-            /Existing.*Replacement.*Diff/
-          );
-          sinon.assert.called(testAdapter.diff);
+          sinon.assert.called(testAdapter.log.colored);
         }
       );
     });
